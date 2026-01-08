@@ -1,121 +1,472 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Sampath Thennakoon</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Mobile Specific Metas
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- FONT
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-    <!-- CSS
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/skeleton.css">
-    <!-- Favicon
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="icon" type="image/ico" href="images/favicon.ico">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DXD1DXSS54"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sampath Thennakoon | Team Lead & Principal Software Engineer</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+            rel="stylesheet">
+
+    <style>
+        :root {
+            /* Sidebar Layout Palette */
+            --bg-sidebar: #0f172a;
+            /* Deep Navy */
+            --bg-content: #f8fafc;
+            /* Light Grey */
+            --bg-card: #ffffff;
+
+            --text-sidebar: #e2e8f0;
+            --text-sidebar-muted: #94a3b8;
+
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent: #3b82f6;
+            /* Bright Blue */
+
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
         }
 
-        gtag('js', new Date());
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        gtag('config', 'G-DXD1DXSS54');
-    </script>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-content);
+            color: var(--text-primary);
+            display: flex;
+            /* Sidebar Layout Core */
+            min-height: 100vh;
+        }
+
+        /* --- Sidebar Styles --- */
+        #sidebar {
+            width: 300px;
+            background: var(--bg-sidebar);
+            color: var(--text-sidebar);
+            height: 100vh;
+            /* Fixed height */
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 2.5rem 2rem;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .sidebar-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-role {
+            font-size: 0.9rem;
+            color: var(--text-sidebar-muted);
+            line-height: 1.4;
+        }
+
+        .nav-menu {
+            list-style: none;
+            flex-grow: 1;
+            /* Pushes social links to bottom */
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.8rem 1rem;
+            color: var(--text-sidebar-muted);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-btn {
+            color: var(--text-sidebar-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .social-btn:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* --- Main Content Styles --- */
+        #content {
+            margin-left: 300px;
+            /* Offset by sidebar width */
+            flex-grow: 1;
+            padding: 4rem 6rem;
+            max-width: 1200px;
+            /* Prevent text from getting too wide */
+        }
+
+        section {
+            margin-bottom: 6rem;
+            scroll-margin-top: 2rem;
+            /* Spacing for anchors */
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        p {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Cards (Reusing cleaner styles) */
+        .card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
+        }
+
+        /* Hero (In Content) */
+        .content-hero {
+            margin-bottom: 4rem;
+        }
+
+        .content-hero h1 {
+            font-size: 3rem;
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .experience-role {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+
+        .experience-date {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            background: #f1f5f9;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .experience-company {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+
+            #sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 2rem;
+                align-items: center;
+                /* Center content on mobile */
+            }
+
+            .nav-menu {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .nav-link:hover {
+                transform: translateY(-2px);
+            }
+
+            #content {
+                margin-left: 0;
+                /* Reset margin */
+                padding: 3rem 1.5rem;
+            }
+
+            .content-hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<!-- Primary Page Layout
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<div class="container">
+<!-- Sidebar -->
+<aside id="sidebar">
+    <div class="profile-section">
+        <img src="profile_pic.jpeg" alt="Sampath Thennakoon" class="sidebar-pic">
+        <div class="profile-name">Sampath<br>Thennakoon</div>
+        <div class="profile-role">Principal Software Engineer<br>& Team Lead</div>
+    </div>
 
-    <div class="row" style="margin-top: 5%">
-        <div class="seven columns">
-            <h1>Sampath Thennakoon</h1>
-            <h5><!--Ph.D. Candidate <br> -->
-                <a class="hidelink" href="https://aeturnum.com/">Senior Tech Lead @ Aeturnum Lanka (Pvt) Ltd.</a>, <br>
-            </h5>
+    <ul class="nav-menu">
+        <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#featured" class="nav-link">Featured Work</a></li>
+        <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+        <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+        <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/sampath-thennakoon-0a0a3a1b" class="social-btn">LinkedIn</a>
+        <a href="https://github.com/sampathsl" class="social-btn">GitHub</a>
+        <a href="mailto:itsampathlk@gmail.com" class="social-btn">Email</a>
+    </div>
+</aside>
+
+<!-- Main Content -->
+<main id="content">
+
+    <div class="content-hero">
+        <h1>Architecting the Future<br>with AI & Data-Driven Solutions</h1>
+        <div class="hero-badges">
+            <span class="badge">Java</span>
+            <span class="badge">Node JS</span>
+            <span class="badge">Python</span>
+            <span class="badge">Generative AI</span>
+            <span class="badge">LLMs</span>
+            <span class="badge">Data Science</span>
+            <span class="badge">Cloud Native</span>
+            <span class="badge">Distributed Systems</span>
+        </div>
+        <p>
+            I am a Team Lead and Principal Software Engineer with over 14 years of experience.
+            I specialize in integrating cutting-edge AI solutions with robust distributed architectures to drive
+            innovation.
+        </p>
+    </div>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="card">
             <p>
-                <b>Contact</b>:
-                itsampathlk at gmail.com
-                <br> <b>Links to</b>:
-                <a class="hidelink" href="files/sampath_thennakoon_short_cv_07_2024.pdf">Short CV</a>
-                <a class="hidelink" href="files/sampath_thennakoon_cv_2024_07.pdf">CV</a> (last update
-                28/07/2024),
-                <a class="hidelink" href="https://www.linkedin.com/in/sampath-thennakoon-0a0a3a1b/">LinkedIn</a>, <a
-                    class="hidelink" href="https://medium.com/@sampathsl">Medium</a>.
+                I hold a Master's degree in Computer Science (Data Science) from the University of Moratuwa.
+                My passion lies in clean architecture and turning complex business problems into elegant technical
+                solutions.
+            </p>
+            <p style="margin-bottom: 0;">
+                Currently leading development at Lendo, I champion TDD, CI/CD, and Agile best practices to deliver
+                robust software that scales.
             </p>
         </div>
-        <div class="five columns">
-            <img src="images/sampath_me.jpg" alt="headshot" width="50%">
+    </section>
+
+    <section id="featured">
+        <h2>Featured Work & Tech</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3 style="margin-bottom: 0.5rem;">Distributed Systems</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 1rem;">Scalable & fault-tolerant architecture.</p>
+                <ul style="padding-left: 1.2rem; font-size: 0.9rem; color: var(--text-secondary);">
+                    <li>Microservices Architecture</li>
+                    <li>Event-Driven Design</li>
+                    <li>High Availability</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3 style="margin-bottom: 0.5rem;">Cloud Infrastructure</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 1rem;">Secure cloud-native solutions.</p>
+                <ul style="padding-left: 1.2rem; font-size: 0.9rem; color: var(--text-secondary);">
+                    <li>AWS & GCP Solutions</li>
+                    <li>Infrastructure as Code</li>
+                    <li>Kubernetes Orchestration</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3 style="margin-bottom: 0.5rem;">Team Leadership</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 1rem;">Empowering engineering teams.</p>
+                <ul style="padding-left: 1.2rem; font-size: 0.9rem; color: var(--text-secondary);">
+                    <li>Mentorship & Growth</li>
+                    <li>Code Quality Standards</li>
+                    <li>Agile Process Optimization</li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div class="row">
-        <div class="twelve columns" style="margin-top: 0%">
-            <h5><strong>About me</strong></h5>
-            <p align="justify">
+    <section id="experience">
+        <h2>Experience</h2>
 
-                I am currently working as a Senior Technical Lead at <a class="hidelink" href="https://aeturnum.com/">Aeturnum
-                Lanka Pvt. Ltd.</a>
-                <br>
-
-            <h5><strong>Research Interests</strong></h5>
-            Earned a Master’s degree in Data Science, Engineering, and Analytics from the <a class="hidelink"
-                                                                                             href="https://uom.lk/">University
-            of Moratuwa, Sri Lanka</a>, specializing in advanced data analysis and engineering techniques.
-            <br>
-            <br>
-
-            <p align="justify">My research interests lie broadly in data science, where the potential of artificial
-                intelligence and vision-based applications to revolutionize various fields and sectors excites me. My
-                area of interest is creating cutting-edge techniques and algorithms that can use artificial intelligence
-                and visual data to solve real-world problems. Among the subjects I'd like to learn more about are</p>
-            <ul>
-                &#128161; &#x1F4A1;<p align="justify"><strong>Image and video analysis</strong>: The Primary objective
-                is to create methods for identifying objects, recognising faces, deciphering scenes, identifying
-                actions, and segmenting semantic information from images and videos. Applying these methods to other
-                fields, like social media, education, healthcare, security, and surveillance, is something else I'm
-                interested in doing.</p>
-                &#128161; &#x1F4A1;<p align="justify"><strong>Human activity recognition and behaviour
-                prediction</strong>: The main goal is to create methods that, given video footage, can identify and
-                forecast various human behaviours, including jogging, walking, dancing, fighting, and driving.
-                Investigating the variables that affect human behaviour, such as motivation, context, personality, and
-                mood, is another area of interest for me.</p>
-                &#128161; &#x1F4A1;<p align="justify"><strong>Human-computer interaction based on vision</strong>:Another
-                research area is to develop and deploy systems
-                that allow people to connect with computers naturally and intuitively by employing vision-based
-                modalities such as body language, gestures, eye movements, and facial expressions. The psychological and
-                social facets of human-computer interaction, such as user experience, engagement, emotion, and trust,
-                are also subjected to further study.</p>
-            </ul>
-
-            <br>
-
-            <h5><strong>Short Bio (Prior to current position)</strong></h5>
-            <p align="justify">
-            <ul>
-                <li>Associate Tech Lead - Zone24x7 Pvt. Ltd., Sri Lanka - May 2019 – March 2021</li>
-                <li>Senior Developer - Cinglevue International Pvt. Ltd., Sri Lanka - November 2017 – April 2019</li>
-                <li>Senior Software Engineer - Intervest Software Technologies Pvt. Ltd., Sri Lanka - November 2014 –
-                    November 2017
-                </li>
-                <li>Software Engineer - Intervest Software Technologies Pvt. Ltd., Sri Lanka - November 2011 – November
-                    2014
-                </li>
-                <li>Trainee Software Engineer - IFS R&D International, Sri Lanka - August 2010 – December 2010</li>
-            </ul>
-            </p>
+        <div class="card">
+            <div class="experience-header">
+                <span class="experience-role">Team Lead</span>
+                <span class="experience-date">Jan 2025 - Present</span>
+            </div>
+            <span class="experience-company">Lendo - Riyadh, Saudi Arabia</span>
+            <p>Leading cross-functional teams and championing the modernization of legacy systems to Java 21/25.</p>
         </div>
-    </div>
-</div>
+
+        <div class="card">
+            <div class="experience-header">
+                <span class="experience-role">Senior Technical Lead</span>
+                <span class="experience-date">Jul 2024 - Dec 2024</span>
+            </div>
+            <span class="experience-company">Aeturnum - Remote</span>
+            <p>Led backend development and collaborated with the CEO to accelerate innovation and technical
+                strategy.</p>
+        </div>
+
+        <div class="card">
+            <div class="experience-header">
+                <span class="experience-role">Technical Lead</span>
+                <span class="experience-date">Jan 2022 - Jul 2024</span>
+            </div>
+            <span class="experience-company">Aeturnum - Sri Lanka</span>
+            <p>Designed RESTful APIs and optimized backend performance. Introduced TDD and CI/CD pipelines.</p>
+        </div>
+
+        <div class="card">
+            <div class="experience-header">
+                <span class="experience-role">Associate Technical Lead</span>
+                <span class="experience-date">Nov 2019 - Mar 2021</span>
+            </div>
+            <span class="experience-company">Zone24x7</span>
+            <p>Managed multiple teams delivering core features using Java, Spring Boot, and NodeJS.</p>
+        </div>
+
+        <div class="card">
+            <div class="experience-header">
+                <span class="experience-role">Senior Developer</span>
+                <span class="experience-date">Nov 2017 - Apr 2019</span>
+            </div>
+            <span class="experience-company">CingleVue International</span>
+            <p>Designed reporting layers and core features for education platforms.</p>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Services</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3>IT Consulting</h3>
+                <p>Architecture reviews and digital transformation strategy.</p>
+            </div>
+            <div class="card">
+                <h3>Backend Development</h3>
+                <p>High-performance Java/Spring applications.</p>
+            </div>
+            <div class="card">
+                <h3>Mentoring</h3>
+                <p>Technical leadership training and team building.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="margin-bottom: 2rem;">
+        <h2>Get In Touch</h2>
+        <p>Ready to discuss your next project? Feel free to reach out.</p>
+        <div style="display: flex; gap: 1rem;">
+            <a href="mailto:email@example.com"
+               style="background: var(--text-primary); color: white; padding: 0.8rem 1.5rem; text-decoration: none; border-radius: 6px;">Email
+                Me</a>
+        </div>
+    </section>
+
+</main>
 </body>
+
 </html>
